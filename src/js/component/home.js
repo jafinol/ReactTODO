@@ -1,24 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 export function Home() {
+	const [todoList, setTodoList] = useState([]);
+	const [todo, setTodo] = useState("");
+	//create your first component
+	const updateTodo = e => {
+		setTodo(e.target.value);
+	};
+
+	const handleAdd = () => {
+		setTodoList([...todoList, todo]);
+		setTodo("");
+	};
+
+	const deleteElem = index => {
+		todoList.splice(index, 1);
+		handleAdd();
+	};
+
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container ">
+			<div className=" text-center container mt-5 todoListMain">
+				<div>
+					<h2>
+						<em> todos</em>
+					</h2>
+				</div>
+				<input
+					onKeyPress={event => {
+						if (event.key === "Enter") {
+							handleAdd();
+						}
+					}}
+					placeholder="enter task"
+					onChange={updateTodo}
+					value={todo}></input>
+			</div>
+
+			{todoList.map((item, index) => (
+				<div
+					key={index}
+					className="todoListMain container"
+					onClick={() => deleteElem(index)}>
+					{item}
+				</div>
+			))}
 		</div>
 	);
 }

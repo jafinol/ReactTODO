@@ -1,5 +1,24 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
+.todoListMain {
+  color: #333;
+  background-color: #eee;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+  list-style: none;
+  width: 450px;
+ text-align: center;
+
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  background-color: #eee;
+  border: none;  
+}
 /* 
 
     You can write your own styles here...
