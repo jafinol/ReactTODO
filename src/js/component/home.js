@@ -3,21 +3,28 @@ import React, { useState } from "react";
 export function Home() {
 	const [todoList, setTodoList] = useState([]);
 	const [todo, setTodo] = useState("");
+	const [sizeArr, setSizeArr] = useState(0);
 
 	//create your first component
 	const updateTodo = e => {
 		setTodo(e.target.value);
+		setSizeArr(todoList.length);
 	};
 
 	const handleAdd = () => {
 		setTodoList([...todoList, todo]);
+
 		setTodo("");
+		setSizeArr(todoList.length);
 	};
 
 	const deleteElem = index => {
 		todoList.splice(index, 1);
 		handleAdd();
+		setSizeArr(todoList.length);
 	};
+
+	// setSizeArr(todoList.length);
 
 	return (
 		<div className="container ">
@@ -48,7 +55,7 @@ export function Home() {
 				</p>
 			))}
 
-			<p className="todoListFoo container">{todoList.length} item left</p>
+			<p className="todoListFoo container">{sizeArr} item left</p>
 		</div>
 	);
 }
