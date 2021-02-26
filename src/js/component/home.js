@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export function Home() {
 	const [todoList, setTodoList] = useState([]);
 	const [todo, setTodo] = useState("");
+
 	//create your first component
 	const updateTodo = e => {
 		setTodo(e.target.value);
@@ -20,13 +21,14 @@ export function Home() {
 
 	return (
 		<div className="container ">
-			<div className=" text-center container mt-5 todoListMain">
+			<div className=" text-center container mt-5 todoListMain2">
 				<div>
 					<h2>
 						<em> todos</em>
 					</h2>
 				</div>
 				<input
+					type="text"
 					onKeyPress={event => {
 						if (event.key === "Enter") {
 							handleAdd();
@@ -38,13 +40,15 @@ export function Home() {
 			</div>
 
 			{todoList.map((item, index) => (
-				<div
+				<p
 					key={index}
 					className="todoListMain container"
 					onClick={() => deleteElem(index)}>
 					{item}
-				</div>
+				</p>
 			))}
+
+			<p className="todoListFoo container">{todoList.length} item left</p>
 		</div>
 	);
 }
