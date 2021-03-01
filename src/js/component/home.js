@@ -24,6 +24,14 @@ export function Home() {
 		setTodoList(result);
 	}
 
+	function MouseOver(index) {
+		document.getElementById(index).style.visibility = "visible";
+	}
+
+	function MouseOut(index) {
+		document.getElementById(index).style.visibility = "hidden";
+	}
+
 	return (
 		<div className="container " style={{ with: "30%", margin: "auto" }}>
 			<div
@@ -49,10 +57,9 @@ export function Home() {
 			{todoList.map((item, index) => (
 				<div
 					key={index}
-					onMouseEnter={() => setTrash(!trash)}
-					onMouseLeave={() => setTrash(!trash)}
-					//onMouseEnter={() => (trashList[index] = !trash)}
-					//onMouseLeave={() => (trashList[index] = !trash)}
+					onMouseOver={() => MouseOver(index)}
+					onMouseOut={() => MouseOut(index)}
+					id="demo"
 					className="todoListMain container row"
 					style={{ with: "30%", margin: "auto" }}
 					onClick={() => deleteElem(todoList, index)}>
@@ -60,11 +67,10 @@ export function Home() {
 						{item}
 					</div>
 					<div className="d-flex justify-content-end col">
-						{!trash === false ? (
-							<i className="fas fa-trash-alt"></i>
-						) : (
-							""
-						)}
+						<i
+							style={{ visibility: "hidden" }}
+							className="fas fa-trash-alt"
+							id={index}></i>
 					</div>
 				</div>
 			))}
